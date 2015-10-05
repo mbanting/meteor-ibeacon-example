@@ -1,18 +1,29 @@
 // App component - represents the whole app
+
+var reactiveBeaconRegion;
+Meteor.startup(function(){
+    if (Meteor.isCordova) {
+        reactiveBeaconRegion = new ReactiveBeaconRegion({uuid: "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", identifier: "beacondemo"});
+    }
+})
+
 App = React.createClass({
-    getBeaconRegion() {
+
+    mixins: [ReactMeteorData],
+
+    getMeteorData() {
+        var beaconsDetected;
+        if (reactiveBeaconRegion != null) {
+            beaconsDetected = reactiveBeaconRegion.getBeaconRegion().beacons;
+        }
         return {
-            beacons: [
-                { _id: 1, text: "This is task 1" },
-                { _id: 2, text: "This is task 2" },
-                { _id: 3, text: "This is task 3" }
-            ]
+              beacons: beaconsDetected
         }
     },
 
     renderBeacons() {
-        return this.getBeaconRegion().beacons.map((beacon) => {
-            return <Beacon key={beacon._id} beacon={beacon} />;
+        return this.data.beacons.map((beacon) => {
+            return <Beacon key={beacon.uuid} beacon={beacon} />;
         });
     },
 

@@ -8,15 +8,20 @@ Beacon = React.createClass({
     render() {
         return (
         <div className="row">
-                <div className="col s4 offset-s4">
+                <div className="col s10 offset-s1">
                     <div className="card blue-grey darken-1">
                         <div className="card-content white-text">
-                            <span className="card-title">Card Title</span>
-                            <p>{this.props.beacon.text}</p>
+                            <span className="card-title">Beacon UUID</span>
+                            <p>{this.props.beacon.uuid}</p>
                         </div>
-                        <div className="card-action">
-                            <a href="#">This is a link</a>
-                            <a href="#">This is a link</a>
+                        <div className="card-action blue-grey lighten-3">
+                            <ul>
+                                <li>major: {this.props.beacon.major}</li>
+                                <li>minor: {this.props.beacon.minor}</li>
+                                <li>proximity: {this.props.beacon.proximity}</li>
+                                <li>rssi: {this.props.beacon.rssi}</li>
+                                <li>accuracy: {this.props.beacon.accuracy}</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
