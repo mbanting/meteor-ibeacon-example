@@ -15,6 +15,7 @@ App = React.createClass({
         var beaconsDetected;
         if (reactiveBeaconRegion != null) {
             beaconsDetected = reactiveBeaconRegion.getBeaconRegion().beacons;
+            beaconsDetected = _.sortBy(beaconsDetected, function(beacon){ return beacon.proximity; });
         }
         return {
               beacons: beaconsDetected
@@ -23,7 +24,7 @@ App = React.createClass({
 
     renderBeacons() {
         return this.data.beacons.map((beacon) => {
-            return <Beacon key={beacon.uuid} beacon={beacon} />;
+            return <Beacon key={beacon.uuid + beacon.major + beacon.minor} beacon={beacon} />;
         });
     },
 
