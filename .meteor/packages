@@ -19,7 +19,7 @@ random
 ejson
 spacebars
 check
-mbanting:reactive-ibeacons
 react
 static-html
 materialize:materialize@=0.97.0
+mbanting:reactive-ibeacons
